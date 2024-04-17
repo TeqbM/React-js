@@ -14,3 +14,9 @@ body{
 .menu a:hover,.menu a.active{
      @apply text-orange-600
 }
+.btn{
+     @apply py-2 px-8 rounded-md bg-orange-200 border border-orange-300 transition-all inline-block hover:bg-orange-600 hover:text-white
+}
+input, textarea{
+     @apply border border-slate-200 rounded-md focus:border-slate-500 focus:outline-none py-2 px-4
+}
