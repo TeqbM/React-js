@@ -1,11 +1,8 @@
-import Swiper from '../Swiper'
 export default function Contact() {
-
   return (
-    <section className="py-10">
+    <section>
       <div className="container">
-          <Swiper />
-
+          Contact Us
       </div>
     </section>
   );
