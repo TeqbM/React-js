@@ -13,10 +13,10 @@ export default function index() {
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/about'>About us</NavLink></li>
             <li><NavLink to='/contact'>Contact us</NavLink></li>
-            
           </ul>
         </nav>
       </div>
     </header>
   )
 }
+

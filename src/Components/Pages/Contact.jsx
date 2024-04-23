@@ -1,8 +1,10 @@
+import Userlist from "../Userlist";
+
 export default function Contact() {
   return (
-    <section>
+    <section className='py-10'>
       <div className="container">
-          Contact Us
+        <Userlist />
       </div>
     </section>
   );
