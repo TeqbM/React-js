@@ -27,7 +27,6 @@ export default function Usereducerlists() {
     };
 
     dispatch({ type: "Add", payload: user });
-    console.log(state);
     e.preventDefault();
   };
   return (

@@ -9,7 +9,7 @@ body{
      @apply w-full max-w-[85rem] mx-auto px-4;
 }
 .menu a{
-     @apply ml-7 font-medium
+     @apply font-medium
 }
 .menu a:hover,.menu a.active{
      @apply text-orange-600

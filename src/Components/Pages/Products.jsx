@@ -5,33 +5,50 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [catFilter, setCatFilter] = useState([]);
   const [isLoading, setIsloading] = useState(false);
-
+  const [load, setLoad] = useState(8);
   const API_URL = "https://fakestoreapi.com/products";
 
   useEffect(() => {
     try {
       setIsloading(true);
-        fetch(API_URL).then((res) => res.json()).then((data) => {
-          setProducts(data)
-          setCatFilter(data)
+      fetch(API_URL)
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data);
+          setCatFilter(data);
         });
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     } finally {
-      setInterval(() =>{
+      setInterval(() => {
         setIsloading(false);
-      },1000)
+      }, 1000);
     }
-  }, []);
+    
+    // load more data
 
+    function handleScroll() {
+      let  docEle = document.documentElement
+      const isBottom = window.innerHeight + docEle.scrollTop === docEle.offsetHeight;  
+      if(isBottom) {
+        setLoad(load + 8);
+      }  
+    }
+    
+    window.addEventListener("scroll", handleScroll);
+
+  }, []);
+  
+  
   const category = [...new Set(products.map((cat) => cat.category))];
 
-  const filterCat =(cat)=>{
-    const filCat = products.filter(citm => {
-      return citm.category === cat
-    })
+  const filterCat = (cat) => {
+    const filCat = products.filter((citm) => {
+      return citm.category === cat;
+    });
+
     setCatFilter(filCat);
-  }
+  };
   return (
     <>
       <section className="py-10 mb-10">
@@ -42,7 +59,11 @@ export default function Products() {
             <>
               <ul className="flex justify-center gap-5 sticky top-0 py-2 border-b bg-white z-30">
                 {category.map((cat) => (
-                  <li className="btn cursor-pointer" key={cat} onClick={()=> filterCat(cat)}>
+                  <li
+                    className="btn cursor-pointer"
+                    key={cat}
+                    onClick={() => filterCat(cat)}
+                  >
                     {cat}
                   </li>
                 ))}
@@ -50,7 +71,8 @@ export default function Products() {
 
               <div className="mt-7 grid grid-cols-4 gap-2">
                 {catFilter.map((itm) => {
-                  const { id, title, price, description, category, image } = itm;
+                  const { id, title, price, description, category, image } =
+                    itm;
 
                   return (
                     <div className="cart relative" key={id}>
@@ -69,7 +91,9 @@ export default function Products() {
                       </h3>
                       <div>{price}₹</div>
                       <div className="mb-5">{description.slice(0, 100)}</div>
-                      <Link className="btn" to={`/shop/${id}`}>View Products</Link>
+                      <Link className="btn" to={`/shop/${id}`}>
+                        View Products
+                      </Link>
                     </div>
                   );
                 })}

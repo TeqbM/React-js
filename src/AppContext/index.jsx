@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from "react";
 const AppCon = createContext();
 
 const AppProvider = ({ children }) => {
-  const [cou, setCou] = useState(0);
-  return <AppCon.Provider value={{ cou, setCou }}>{children}</AppCon.Provider>;
+  const [item, setItem] = useState([]);
+  return <AppCon.Provider value={{item, setItem}}>{children}</AppCon.Provider>;
 };
 const AppUCon = () => useContext(AppCon);
 
