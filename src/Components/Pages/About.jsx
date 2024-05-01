@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 
 export default function About() {
   
@@ -6,8 +7,15 @@ export default function About() {
 
     <section className="py-10">
       <div className="container">
-        About us 
+        <Suspense fallback={<Loading />}>
+         
+        </Suspense>
       </div>
     </section>
   );
+}
+
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
 }

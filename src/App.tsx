@@ -2,7 +2,7 @@ import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Home from './Components/Pages/Home'
 import About from './Components/Pages/About'
-import Products from './Components/Pages/Products'
+import Shop from './Components/Pages/Shop'
 import Singleproducts from './Components/Pages/Singleproducts'
 import Contact from './Components/Pages/Contact'
 import Notfound404 from './Components/Pages/Notfound'
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/shop' element={<Products />} />
+          <Route path='/shop' element={<Shop />} />
           <Route path='/shop/:id' element={<Singleproducts />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='*' element={<Notfound404 />} />
