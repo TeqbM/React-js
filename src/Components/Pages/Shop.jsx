@@ -4,7 +4,7 @@ export default function Shop() {
   console.log(fruits);
   return (
     <>
-      shop
+    
     </>
   )
 }
