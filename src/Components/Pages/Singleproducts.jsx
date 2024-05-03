@@ -1,13 +1,21 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { fruits } from "../../data.js";
+import {fruits } from "../../data.js";
+import {AppUseCon} from '../../AppContext'
+
 export default function Singleproducts() {
+
   let { id } = useParams();
   let singleProduct = fruits.find((itm) => itm.id == id);
-  console.log(singleProduct);
+  const { id: pId, name, image,category, price, discription,SKU} = singleProduct;
+  
+  let serCartI = AppUseCon()
 
-  const { id: pId, name, image, price, discription,SKU} = singleProduct;
-  // console.log(id);
+ let {carti,setCarti} = serCartI;
+ const getProducst = ()=>{
+    setCarti([...carti, singleProduct]);
+  }
+
   return (
     <section>
       <div className="bg-slate-100 py-4">
@@ -35,10 +43,14 @@ export default function Singleproducts() {
               <div className="space-y-5">
                 {pId}
                 <h1 className="text-2xl font-bold text-orange-600">{name}</h1>
-                <div> {SKU && <><strong>SKU:</strong> {SKU}</> } </div>
                 <div>{discription}</div>
-                <div className="text-xl text-orange-600">{price}₹</div>
-                <button className="btn">Add to Cart</button>
+                <div className="text-xl text-orange-600"><strong>Price: </strong> {price}₹</div>
+                <button onClick={()=> getProducst()} className="btn">Add to Cart</button>
+
+                <ul className="mt-3 pt-4 border-t">
+                  <li> {SKU && <><strong>SKU:</strong> {SKU}</> } </li>
+                  <li> {category && <><strong>Category:</strong> {category}</> } </li>
+                </ul>
               </div>
             </div>
           </div>

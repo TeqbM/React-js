@@ -1,11 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext,useState } from "react";
 
-const AppCon = createContext();
+const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  const [item, setItem] = useState([]);
-  return <AppCon.Provider value={{item, setItem}}>{children}</AppCon.Provider>;
+  const [carti, setCarti] = useState([])
+  return <AppContext.Provider value={{carti,setCarti}}>{children}</AppContext.Provider>;
 };
-const AppUCon = () => useContext(AppCon);
 
-export { AppProvider, AppUCon };
+const AppUseCon = () => useContext(AppContext);
+
+export { AppProvider, AppUseCon };

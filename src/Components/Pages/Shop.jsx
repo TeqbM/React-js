@@ -29,10 +29,14 @@ export default function Shop() {
   // };
   
   const filterProducts =()=>{
-  let filterCategory = fruit.filter(prt => filter.category.includes(prt.category));
-  let filterColor = fruit.filter(clr => filter.color.some(fColor => clr.color.includes(fColor)))
-  setProducts([...filterCategory,...filterColor])
   
+    let filterCategory = fruit.filter(prt => filter.category.includes(prt.category));
+
+  let filterColor = fruit.filter(clr => filter.color.some(fColor => clr.color.includes(fColor)))
+
+  
+    setProducts([...new Set([...filterCategory,...filterColor])]);
+    console.log(products);
   }
   return (
     <>

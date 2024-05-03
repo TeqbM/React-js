@@ -1,12 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { AppUCon } from "../../AppContext";
-
+import {AppUseCon} from '../../AppContext'
 export default function index() { 
-  const appCon = AppUCon();
-  const {item} = appCon;
-  const sum = item.reduce((total, pri) => total + pri.price, 0);
-  
+  let item = AppUseCon()
+
+  let totle = item.carti.reduce((total,num,inx,arr) => arr.price + num, 0);
+
+  console.log(totle);
+
+  // // let totle = item.carti.reduce((acc,curVal) => acc+ curVal,0)
+  // console.log(totle);
 
     
   return (
@@ -32,8 +35,8 @@ export default function index() {
               <NavLink to="/contact">Contact us</NavLink>
             </li>
             <li className=" flex gap-3">
-              <div className="bg-orange-600 w-7 flex justify-center items-center h-h rounded-full text-white"> {item.length}</div>
-              {sum.toFixed(2)}
+              <div className="bg-orange-600 w-7 flex justify-center items-center h-h rounded-full text-white">{item.carti.length}</div>
+              2300
             </li>
           </ul>
         </nav>
