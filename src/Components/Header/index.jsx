@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import {AppUseCon} from '../../AppContext'
-export default function index() { 
-  let item = AppUseCon()
+import { AppContext } from "../../AppContext";
+export default function index() {
+  const [totalq, setTotalq] = useState(0);
+  const [total, setTotal] = useState(0);
 
-  let totle = item.carti.reduce((total,num,inx,arr) => arr.price + num, 0);
+  let {carti, setCarti} = useContext(AppContext);
 
-  console.log(totle);
+  useEffect(() => {
+    if (carti.length > 0) {
+      let qtyTotal = carti.reduce(
+        (curQut, curArr) => curQut + curArr.quantity,
+        0
+      );
 
-  // // let totle = item.carti.reduce((acc,curVal) => acc+ curVal,0)
-  // console.log(totle);
+      let totalPrice = carti.reduce((curAcc,curVal)=>{
+        let sumQly = curVal.price * curVal.quantity;
+        return curAcc + sumQly;
+      },0);
 
-    
+      setTotal(totalPrice);
+      setTotalq(qtyTotal);
+    }
+
+  }, [carti]);
+
   return (
     <header className="py-2 bg-orange-100/50 backdrop-blur border-b border-orange-200 sticky top-0 z-50 ">
       <div className="container">
@@ -34,9 +47,13 @@ export default function index() {
             <li>
               <NavLink to="/contact">Contact us</NavLink>
             </li>
-            <li className=" flex gap-3">
-              <div className="bg-orange-600 w-7 flex justify-center items-center h-h rounded-full text-white">{item.carti.length}</div>
-              2300
+            <li className="">
+              <NavLink to="/cart" className={"flex gap-3"}>
+                <div className="bg-orange-600 w-7 flex justify-center items-center h-h rounded-full text-white">
+                  {totalq}
+                </div>
+                {total}₹
+              </NavLink>
             </li>
           </ul>
         </nav>

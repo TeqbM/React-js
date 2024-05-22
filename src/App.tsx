@@ -5,6 +5,7 @@ import About from './Components/Pages/About'
 import Shop from './Components/Pages/Shop'
 import Singleproducts from './Components/Pages/Singleproducts'
 import Contact from './Components/Pages/Contact'
+import Cart from './Components/Pages/Cart'
 import Notfound404 from './Components/Pages/Notfound'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/shop/:id' element={<Singleproducts />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<Notfound404 />} />
         </Routes>
         <Footer />

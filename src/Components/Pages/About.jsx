@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import Demo from "./Demo";
 
 export default function About() {
   
@@ -7,15 +7,9 @@ export default function About() {
 
     <section className="py-10">
       <div className="container">
-        <Suspense fallback={<Loading />}>
-         
-        </Suspense>
+          <Demo />
       </div>
     </section>
   );
 }
 
-
-function Loading() {
-  return <h2>🌀 Loading...</h2>;
-}

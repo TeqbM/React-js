@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import {fruits } from "../../data.js";
-import {AppUseCon} from '../../AppContext'
+import { fruits } from "../../data.js";
+import { AppContext, AppUseCon } from "../../AppContext";
 
 export default function Singleproducts() {
-
   let { id } = useParams();
   let singleProduct = fruits.find((itm) => itm.id == id);
-  const { id: pId, name, image,category, price, discription,SKU} = singleProduct;
-  
-  let serCartI = AppUseCon()
+  const {
+    id: pId,
+    name,
+    image,
+    category,
+    price,
+    discription,
+    SKU,
+  } = singleProduct;
 
- let {carti,setCarti} = serCartI;
- const getProducst = ()=>{
-    setCarti([...carti, singleProduct]);
-  }
+  // const { carti, setCarti } = AppUseCon();
+  const { carti, setCarti } = useContext(AppContext);
+
+  const getProducst = () => {
+    const index = carti.findIndex(
+      (cartItem) => cartItem.id === singleProduct.id
+    );
+
+    if (index !== -1) {
+      carti[index].quantity = Number(carti[index].quantity ?? 1) + 1;
+    } else {
+      singleProduct.quantity = 1;
+      carti.push(singleProduct);
+    }
+    const data = Object.values({ ...carti });
+    setCarti(data);
+  };
 
   return (
     <section>
       <div className="bg-slate-100 py-4">
         <div className="container">
           <Link to="/shop" className="text-orange-600">
-            {" "}
             Back Shop
-          </Link>{" "}
+          </Link>
           / <span>{name}</span>
         </div>
       </div>
@@ -44,12 +61,28 @@ export default function Singleproducts() {
                 {pId}
                 <h1 className="text-2xl font-bold text-orange-600">{name}</h1>
                 <div>{discription}</div>
-                <div className="text-xl text-orange-600"><strong>Price: </strong> {price}₹</div>
-                <button onClick={()=> getProducst()} className="btn">Add to Cart</button>
+                <div className="text-xl text-orange-600">
+                  <strong>Price: </strong> {price}₹
+                </div>
+                <button onClick={() => getProducst()} className="btn">
+                  Add to Cart
+                </button>
 
                 <ul className="mt-3 pt-4 border-t">
-                  <li> {SKU && <><strong>SKU:</strong> {SKU}</> } </li>
-                  <li> {category && <><strong>Category:</strong> {category}</> } </li>
+                  <li>
+                    {SKU && (
+                      <>
+                        <strong>SKU:</strong> {SKU}
+                      </>
+                    )}
+                  </li>
+                  <li>
+                    {category && (
+                      <>
+                        <strong>Category:</strong> {category}
+                      </>
+                    )}
+                  </li>
                 </ul>
               </div>
             </div>
