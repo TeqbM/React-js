@@ -19,12 +19,13 @@ export default function Contact() {
   const [name,setName] =useState("")
   
   const addItem  = ()=>{
-    const useitm = {
-      id:Date.now(),
-      name:name
-    }
-    console.log(useitm);
-    dispatch({type: "add", payload:useI})
+    // const useitm = {
+    //   id:Date.now(),
+    //   name:name
+    // }
+    // console.log(useitm);
+    // dispatch({type: "add", payload:useI})
+    console.log("===>>", name);
   }
   
   return (

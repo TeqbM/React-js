@@ -1,5 +1,4 @@
-import Demo from "./Demo";
-
+import Demo from './Demo';
 export default function About() {
   
 
@@ -7,9 +6,8 @@ export default function About() {
 
     <section className="py-10">
       <div className="container">
-          <Demo />
+        <Demo />          
       </div>
     </section>
   );
 }
-
